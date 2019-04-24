@@ -60,6 +60,7 @@ gem 'auto_html', '~>1.6.4'
 gem 'sanitize'
 
 gem 'active_model_serializers'
+gem 'rails-i18n'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

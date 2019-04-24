@@ -1,0 +1,21 @@
+<% if @events %>
+  <% @events.each do |event| %>
+    <div id="event-<%= event.id %>" class="event">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 well">
+          <%= render event, remote: false %>
+
+          <br />
+
+          <br>
+          <div class="comments">
+            <% if event.comments.count > 0 %>
+              <%= render(event.comments) || render('shared/no_resource', resources: 'Comments') %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+<% end %>

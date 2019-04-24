@@ -2,7 +2,7 @@
   <div class="info">
     <%= render 'shared/avatar', user: event.user %>
     <h4 class="name"><%= link_to event.user.name, user_path(event.user) %></h4>
-    <span class="action">oprettet en <%= link_to 'begivenhed', event %></span>
+    <span class="action">har oprettet en <%= link_to 'begivenhed', event %></span>
   </div>
   <div class="content">
     <h3><%= event.name %></h3>

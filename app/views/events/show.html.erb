@@ -1,13 +1,13 @@
 <% if @event.user %>
   <div id="event-<%= @event.id %>" class="event">
     <div class="row">
-      <div class="col-lg-6 col-lg-offset-3 well">
+      <div class="col-lg-8 col-lg-offset-2 well">
         <%= render @event, remote: false %>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6 col-lg-offset-3 well">
-        <h4>Comments</h4>
+      <div class="col-lg-8 col-lg-offset-2 well">
+        <h4>Kommentarer</h4>
         <hr>
         <%= render 'comments/form', commentable: @event %>
         <br>

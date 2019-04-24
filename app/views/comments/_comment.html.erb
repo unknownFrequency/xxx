@@ -6,14 +6,16 @@
     </div>
     <div class="content">
       <div class="row">
-        <span class="text"><%= comment.comment_html %></span>
-      </div>
-      <div class="pull-right">
-        <% if belongs_to_user?(comment) %>
-          <%= link_to comment_path(comment), method: :delete, class: 'btn btn-danger btn-sm', remote: true do %>
-            <% fa_icon 'trash' %>
-          <% end %>
-        <% end %>
+        <span class="text">
+          <%= comment.comment_html %>
+          <span class="pull-right" style="margin-top: -40px">
+            <% if belongs_to_user?(comment) %>
+              <%= link_to comment_path(comment), method: :delete, class: 'btn btn-danger btn-sm', remote: true do %>
+                <% fa_icon 'trash' %>
+              <% end %>
+            <% end %>
+          </span>
+        </span>
       </div>
     </div>
     <br>

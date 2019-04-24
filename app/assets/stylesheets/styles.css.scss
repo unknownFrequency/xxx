@@ -107,7 +107,6 @@ h6 {
 }
 
 .btn-primary {
-  background-color: $navbar-color;
 }
 
 .btn-sm {
@@ -173,6 +172,8 @@ textarea {
 .activity-post,
 .event,
 .post {
+    margin-top: 80px;
+
   .actions {
     margin-top: 10px;
     padding-top: 10px;
