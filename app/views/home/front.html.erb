@@ -5,14 +5,14 @@
 
     <h4><%= fa_icon "newspaper-o" %> NYHEDER</h4>
     <div id="activities" >
-      <% if @activities.empty? %>
+      <% if @public_activities.empty? %>
         <div class="well">
           <%= render('shared/no_resource', resources: 'Activities') %>
         </div>
       <% else %>
-        <%= render_activities(@activities, layout: '/shared/activity') %>
+        <%= render_activities(@public_activities, layout: '/shared/activity') %>
       <% end %>
     </div>
-    <%= render 'shared/paginate', resources: @activities %>
+    <%= render 'shared/paginate', resources: @public_activities %>
   </div>
 </div>

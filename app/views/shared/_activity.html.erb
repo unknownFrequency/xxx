@@ -1,1 +1,5 @@
-<%= render_activity(activity) %>
+<% if user_signed_in? %>
+  <%= render_activity(activity) %>
+<% else %>
+  <%= render_activity(activity) if activity.trackable_type == "Post" && Post.find(activity.trackable_id).public %>
+<% end %>

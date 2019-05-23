@@ -3,11 +3,15 @@
   <%= form_for @post, html: { class: 'post_form' } do |f| %>
     <div class="form-group">
       <h4>Hvad har du på hjertet?</h4>
-      <div id="post-content" contenteditable="true" class="editable form-control input-mentionable" placeholder="What's up?"></div>
+      <div id="post-content" contenteditable="true" class="editable form-control input-mentionable" placeholder="Kom så de hviii"></div>
       <%= f.hidden_field :content, value: @post.content, class: 'form-control input-mentionable', autofocus: true %>
     </div>
     <div id="img-preview" class="form-group hidden">
       <img src="" alt="Preview">
+    </div>
+    <div class="form-group ">
+      <%= f.label "Offentligt?" %>
+      <%= f.check_box :public %>
     </div>
     <div class="form-group hidden">
       <%= f.file_field :attachment %>

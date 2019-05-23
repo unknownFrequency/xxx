@@ -13,7 +13,23 @@ class HomeController < ApplicationController
   end
 
   def front
-    @activities = PublicActivity::Activity.joins("INNER JOIN users ON activities.owner_id = users.id").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @public_activities = PublicActivity::Activity.distinct.joins("INNER JOIN users ON activities.owner_id = users.id")
+      .joins('INNER JOIN posts ON activities.trackable_type = "Post"').where("posts.public" => true)
+      .order(created_at: :desc)
+      .paginate(page: params[:page], per_page: 10)
+    # @public_activities = PublicActivity::Activity.joins("INNER JOIN users ON activities.owner_id = users.id")
+    #   .order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+      # .joins("INNER JOIN posts ON activities.trackable_type = 'Post'")
+    # @public_activities = []
+
+    # @public_activities.each do |activity|
+    #   if activity.trackable_type == "Post"
+    #     if Post.find(activity.trackable_id).public
+    #       @public_activities.remove activity
+    #     end
+    #   end
+    # end
+    # @public_activities = @public_activities.paginate(page: params[:page], per_page: 4)
   end
 
   def find_friends
