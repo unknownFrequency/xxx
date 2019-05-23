@@ -12,12 +12,14 @@
             <%= render('shared/no_resource', resources: 'Activities') %>
           </div>
         <% else %>
+        hest
           <%= render_activities(@activities, layout: '/shared/activity') %>
+          pest
         <% end %>
       </div>
       <%= render 'shared/paginate', resources: @activities %>
     </div>
-  
+
   <div class="col-lg-3">
     <%= render 'shared/links' %>
   </div>

@@ -1,5 +1,8 @@
 ---
 da:
+  less: mindre
+  than: end
+  minutes: minutter
   post: besked
   event: begivenhed
 
@@ -26,7 +29,7 @@ da:
     - fre
     - lør
     abbr_month_names:
-    - 
+    -
     - jan
     - feb
     - mar
@@ -52,7 +55,7 @@ da:
       long: "%e. %B %Y"
       short: "%e. %b %Y"
     month_names:
-    - 
+    -
     - januar
     - februar
     - marts
@@ -214,4 +217,3 @@ da:
       long: "%A d. %e. %B %Y, %H.%M"
       short: "%e. %b %Y, %H.%M"
     pm: ''
-
