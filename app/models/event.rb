@@ -14,4 +14,8 @@ class Event < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :event_datetime
   validates_presence_of :user
+
+  # default_scope { order("datetime(event_datetime) DESC").where('event_datetime >= ?', Date.today) }
+  default_scope { order("event_datetime DESC").where('event_datetime >= ?', Date.today) }
+  # default_scope { order(event_datetime: :asc) }
 end

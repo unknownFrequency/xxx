@@ -9,14 +9,28 @@ class HomeController < ApplicationController
   def index
     @post = Post.new
     @friends = @user.all_following.unshift(@user)
-    @activities = PublicActivity::Activity.where(owner_id: @friends).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @activities = PublicActivity::Activity.distinct.where(owner_id: @friends).order(created_at: :desc).paginate(page: params[:page], per_page: 5)
   end
 
   def front
-    @public_activities = PublicActivity::Activity.distinct.joins("INNER JOIN users ON activities.owner_id = users.id")
-      .joins('INNER JOIN posts ON activities.trackable_type = "Post"').where("posts.public" => true)
+    @public_activities = PublicActivity::Activity.distinct
+      .joins("INNER JOIN users ON activities.owner_id = users.id")
+      .joins('INNER JOIN posts ON activities.trackable_type = "Post"')
+      .where("posts.public" => true)
       .order(created_at: :desc)
-      .paginate(page: params[:page], per_page: 10)
+      .paginate(page: params[:page], per_page: 5)
+
+    @public_events = PublicActivity::Activity.distinct
+      .joins("INNER JOIN users ON activities.owner_id = users.id")
+      .joins('INNER JOIN events ON activities.trackable_type = "Event"')
+      .where('events.event_datetime >= ?', Date.today)
+      .paginate(page: params[:page], per_page: 50)
+
+
+      # .reorder('events.event_datetime DESC')
+    # @public_events = Event.all.where("event_datetime >= ?", Date.today)
+
+
     # @public_activities = PublicActivity::Activity.joins("INNER JOIN users ON activities.owner_id = users.id")
     #   .order(created_at: :desc).paginate(page: params[:page], per_page: 10)
       # .joins("INNER JOIN posts ON activities.trackable_type = 'Post'")
