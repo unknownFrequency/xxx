@@ -4,10 +4,14 @@
 
 <table>
   <tbody>
-    <% @galleries.each do |gallery| %>
+    <% @galleries.each_with_index do |gallery, i| %>
+      <thead>
+        <td><h3><%= gallery.title %></h3></td>
+      </thead>
+
       <tr>
-        <%# <td><%= image_tag gallery.gallery_attachments[0].picture.thumb %1></td> %>
-        <td><%= image_tag gallery.gallery_attachments[0].picture.thumb %></td>
+        <td><%= link_to image_tag(gallery.gallery_attachments[0].picture.thumb), gallery_path(gallery.id) %></td>
+        <%# <td><%= image_tag gallery.gallery_attachments[0].inspect %1></td> %>
         <td><%= link_to 'Vis', gallery %></td>
         <td><%= link_to 'Rediger', edit_gallery_path(gallery) %></td>
         <td><%= link_to 'Slet', gallery, method: :delete, data: { confirm: 'Er du sikker?' } %></td>
@@ -18,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Gallery', new_gallery_path %>
+<%= link_to 'Nyt Galleri', new_gallery_path %>
