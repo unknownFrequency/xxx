@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190523082130) do
+ActiveRecord::Schema.define(version: 20190822091903) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -88,6 +88,23 @@ ActiveRecord::Schema.define(version: 20190523082130) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.string   "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title"
+  end
+
+  create_table "gallery_attachments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "gallery_id"
+    t.index ["gallery_id"], name: "index_gallery_attachments_on_gallery_id"
+    t.index ["user_id"], name: "index_gallery_attachments_on_user_id"
   end
 
   create_table "merit_actions", force: :cascade do |t|

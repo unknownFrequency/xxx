@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :gallery_attachments
   resources :galleries
   resources :posts
   resources :comments, only: [:create, :destroy]

@@ -533,6 +533,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   merit
+  mini_magick
   pg
   populator
   public_activity

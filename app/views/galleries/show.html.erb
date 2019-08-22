@@ -1,9 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Picture:</strong>
-  <%= @gallery.picture %>
-</p>
+<h2><%= @gallery.title %>TODO: save title</h2>
+
+<% @gallery.gallery_attachments.each do |gallery| %>
+  <div class="img-fluid"><%= image_tag gallery.picture.gallery_thumb %></div>
+<% end %>
+
+
 
 <%= link_to 'Edit', edit_gallery_path(@gallery) %> |
 <%= link_to 'Back', galleries_path %>

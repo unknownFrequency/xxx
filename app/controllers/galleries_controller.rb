@@ -1,38 +1,44 @@
 class GalleriesController < ApplicationController
   before_action :set_gallery, only: [:show, :edit, :update, :destroy]
 
-  # GET /galleries
   def index
     @galleries = Gallery.all
   end
 
-  # GET /galleries/1
   def show
+    @gallery_attachments = @gallery.gallery_attachments.all
   end
 
-  # GET /galleries/new
   def new
     @gallery = Gallery.new
+    @gallery_attachment = @gallery.gallery_attachments.build
   end
 
-  # GET /galleries/1/edit
   def edit
   end
 
-  # POST /galleries
   def create
     @gallery = Gallery.new(gallery_params)
 
-    if @gallery.save
-      redirect_to @gallery, notice: 'Gallery was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if @gallery.save
+        params[:gallery_attachments]['picture'].each do |pic|
+          @gallery_attachment = @gallery.gallery_attachments.create!(picture: pic, gallery_id: @gallery.id)
+        end
+
+        format.html { redirect_to @gallery, notice: 'Galleriet er nu uprettet' }
+      else
+        format.html { render action: 'new' }
+      end
     end
   end
 
-  # PATCH/PUT /galleries/1
   def update
     if @gallery.update(gallery_params)
+      params[:gallery_attachments]['picture'].each do |a|
+        @gallery_attachment = @gallery.gallery_attachments.create!(:picture => a, :gallery_id => @gallery.id)
+      end
+
       redirect_to @gallery, notice: 'Gallery was successfully updated.'
     else
       render :edit
@@ -46,13 +52,11 @@ class GalleriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_gallery
       @gallery = Gallery.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def gallery_params
-      params.require(:gallery).permit(:picture)
+      params.require(:gallery).permit(:picture, gallery_attachments_attributes:  [:id, :gallery_id, :picture])
     end
 end
