@@ -3,7 +3,7 @@
 <h2><%= @gallery.title %>TODO: save title</h2>
 
 <% @gallery.gallery_attachments.each do |gallery| %>
-  <div class="img-fluid"><%= image_tag gallery.picture.gallery_thumb %></div>
+  <div class="img-fluid"><%= link_to image_tag(gallery.picture.gallery_thumb), gallery.picture.url %></div>
 <% end %>
 
 
