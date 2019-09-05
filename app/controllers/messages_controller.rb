@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
    @message = current_user.messages.new(message_params)
 
     if @message.save
-      redirect_to root_path
+      redirect_to new_message_path
     else
       render 'new', notice: @message.errors.full_messages.first
     end
@@ -21,6 +21,7 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
+    @messages_user_arr = current_user.messages.all.select(:receiver_id).uniq
   end
 
   private

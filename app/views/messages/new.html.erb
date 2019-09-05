@@ -1,13 +1,34 @@
-<%= form_for @message, :html => {:class => "form-group"} do |f| %>
-  <div class="form-group">
-    <%= f.select :receiver_id, options_for_select(User.all.map{ |u| [u.name, u.id] }), {}, {:class => "form-control"} %>
-  </div>
+<div class="container">
 
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <%= f.text_area :message , :size => "141x12", :html => {class: "form-control"} %>
+  <%= form_for @message, :html => {:class => "form-group"} do |f| %>
+    <div class="form-group">
+      <%= f.select :receiver_id, options_for_select(User.all.map{ |u| [u.name, u.id] }), {}, {:class => "form-control"} %>
     </div>
-  </div>
-  
-  <%= submit_tag "Send" %>
-<% end %>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <%= f.text_area :message , :size => "141x12", :html => {class: "form-control"} %>
+      </div>
+    </div>
+    
+    <%= submit_tag "Send" %>
+  <% end %>
+
+  <% receiver_id_arr = [] %>
+  <% @messages_user_arr.each do |user| %>
+      <div class="row" id="">
+        <div class="col-12">
+          <p><%= link_to User.find(user.receiver_id).name, user_path(user.receiver_id) %> &nbsp; </p>
+
+          <% current_user.messages.all.where(receiver_id: user.receiver_id).order(created_at: :desc).each do |message| %>
+            <p style="margin-left: 50px;"><span style="font-size: 0.7em; "><%= message.created_at.strftime("%-d %B %Y: %H:%M") %></span> <%= message.message %></p>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+
+
+</div>
+
+<%= pp @messages_user_arr.inspect %>
+<%# <%= pp current_user.messages.all.inspect %1> %>
