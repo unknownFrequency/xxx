@@ -21,7 +21,18 @@
           <p><%= link_to User.find(user.receiver_id).name, user_path(user.receiver_id) %> &nbsp; </p>
 
           <% current_user.messages.all.where(receiver_id: user.receiver_id).order(created_at: :desc).each do |message| %>
-            <p style="margin-left: 50px;"><span style="font-size: 0.7em; "><%= message.created_at.strftime("%-d %B %Y: %H:%M") %></span> <%= message.message %></p>
+            <p style="margin-left: 50px;">
+              <% if message.created_at.today? %>
+                <span style="font-size: 0.7em; "><%= message.created_at.strftime("%H:%M") %></span>
+              <% elsif message.created_at.year == Date.today.year %>
+                <span style="font-size: 0.7em; "><%= message.created_at.strftime("%-d %B %H:%M") %></span>
+                             hejj
+              <% else %>
+                <span style="font-size: 0.7em; "><%= message.created_at.strftime("%-d %B %Y: %H:%M") %></span>
+              <% end %>
+
+              <%= message.message %>
+            </p>
           <% end %>
         </div>
       </div>
