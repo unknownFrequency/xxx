@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.new do |comment|
-      p "--------------------------------------------------------> #{params.inspect}"
+      # p "--------------------------------------------------------> #{params.inspect}"
       comment.comment = params[:comment_text]
       comment.user = current_user
     end

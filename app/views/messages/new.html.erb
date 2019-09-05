@@ -1,0 +1,13 @@
+<%= form_for @message, :html => {:class => "form-group"} do |f| %>
+  <div class="form-group">
+    <%= f.select :receiver_id, options_for_select(User.all.map{ |u| [u.name, u.id] }), {}, {:class => "form-control"} %>
+  </div>
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <%= f.text_area :message , :size => "141x12", :html => {class: "form-control"} %>
+    </div>
+  </div>
+  
+  <%= submit_tag "Send" %>
+<% end %>

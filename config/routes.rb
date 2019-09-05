@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :gallery_attachments
   resources :galleries
   resources :posts
+  resources :messages
   resources :comments, only: [:create, :destroy]
   devise_for :users
   resources :users do
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
       get :mentionable
     end
   end
+
 
   resources :events do
     collection do
