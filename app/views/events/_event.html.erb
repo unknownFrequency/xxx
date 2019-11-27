@@ -9,6 +9,9 @@
     <span class="text">
       <%= fa_icon'calendar' %> <%= formatted_time(event.event_datetime) %>
     </span>
+    <p>
+      <%= event.description %>
+    </p>
     <%= render 'shared/created_at', activity: event %>
     <div class="points">
       <span class="like-count"><%= pluralize(event.cached_votes_up, 'like') %></span>
