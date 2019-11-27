@@ -7,7 +7,11 @@
     <%= f.label :when? %>
     <%= f.text_field :event_datetime, placeholder: 'Hvornår er det?', class: 'form-control' %>
   </div>
+  <div class="form-group">
+    <%= f.label "Beskrivelse" %>
+    <%= f.text_area :description, placeholder: 'Beskrivelse', class: 'form-control', cols: 30, rows:  10 %>
+  </div>
   <div class="actions">
-    <%= f.submit (@event.persisted? ? :update : :create), class: 'btn btn-primary' %>
+    <%= f.submit (@event.persisted? ? "Opdater" : "Opret"), class: 'btn btn-primary' %>
   </div>
 <% end %>
