@@ -12,7 +12,7 @@ class HomeController < ApplicationController
     @friends = User.all
     # @activities = PublicActivity::Activity.distinct
     #   .where(owner_id: @friends).order(created_at: :desc).paginate(page: params[:page], per_page: 5)
-    @activities = PublicActivity::Activity.distinct.all
+    @activities = PublicActivity::Activity.all.distinct
       .order(created_at: :desc).paginate(page: params[:page], per_page: 5)
 
     @events = Event.all.distinct

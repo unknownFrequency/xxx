@@ -1,11 +1,13 @@
 <% if user_signed_in? %>
-  <%= render_activity(activity) %>
-
-  <% if activity.trackable_type == "Event" %>
+  <% if  activity.key != "event.like" %>
     <%= render_activity(activity) %>
-  <% end %>
 
-  <% if activity.trackable_type == "Post" && Post.find(activity.trackable_id).public %>
-    <%= render_activity(activity)  %>
+    <% if activity.trackable_type == "Event" %>
+      <%= render_activity(activity) %>
+    <% end %>
+
+    <% if activity.trackable_type == "Post" && Post.find(activity.trackable_id).public && activity.key != "event.like" %>
+      <%= render_activity(activity)  %>
+    <% end %>
   <% end %>
 <% end %>

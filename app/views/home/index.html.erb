@@ -4,22 +4,23 @@
   </div>
   <div class="index-events col-lg-9">
     <h4>UGENS BEGIVENHEDER</h4>
+    <%= @activities.inspect %>
 
     <ul class="list-group">
       <% @events.each do |event| %>
         <h4><%= link_to event.name, event_path(event) %></h4>
         <li class="list-group-item type="button" data-toggle="collapse" data-target="#event-colapsible" aria-expanded="false" aria-controls="event-colapsible">
-          <%= event.event_datetime.strftime('d. %d/%m') %>
+          <%= event.event_datetime.strftime('d. %d/%m  %h.%M') %>
           <span class="float-right">
-             Oprettet af: <strong><u><%= link_to User.find(event.user_id).name %></u></strong>
+                                   Oprettet af: <strong><u><%= link_to User.find(event.user_id).name %></u></strong>
           </span>
 
-             <div class="collapse" id="event-colapsible">
-               <div class="card card-body">
-                 <br />
-                 <%= event.description %>
-               </div>
-             </div>
+          <div class="collapse" id="event-colapsible">
+            <div class="card card-body">
+              <br />
+              <%= event.description %>
+            </div>
+          </div>
         </li>
       <% end %>
     </ul>
