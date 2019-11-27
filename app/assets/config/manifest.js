@@ -1,9 +1,5 @@
-#//= link ajax-loader.gif
-#//= link application.css
-#//= link application.js
-#//= link logo.jpg
-#//= link ../images/avatar.jpg
-//= link_directory ../images 
-//= link_directory ../stylesheets 
+//= link_tree ../images 
+//= link_directory ../javascripts .js 
+//= link_directory ../stylesheets .css
 //= link ../javascripts/application.js 
 //= link ../stylesheets/application.css 

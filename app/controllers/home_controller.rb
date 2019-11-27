@@ -8,8 +8,16 @@ class HomeController < ApplicationController
 
   def index
     @post = Post.new
-    @friends = @user.all_following.unshift(@user)
-    @activities = PublicActivity::Activity.distinct.where(owner_id: @friends).order(created_at: :desc).paginate(page: params[:page], per_page: 5)
+    # @friends = @user.all_following.unshift(@user)
+    @friends = User.all
+    # @activities = PublicActivity::Activity.distinct
+    #   .where(owner_id: @friends).order(created_at: :desc).paginate(page: params[:page], per_page: 5)
+    @activities = PublicActivity::Activity.distinct.all
+      .order(created_at: :desc).paginate(page: params[:page], per_page: 5)
+
+    @events = Event.all.distinct
+      .where('events.event_datetime >= ?', Date.today)
+      .where('events.event_datetime <= ?', Date.today + 7.days)
   end
 
   def front
@@ -24,6 +32,7 @@ class HomeController < ApplicationController
       .joins("INNER JOIN users ON activities.owner_id = users.id")
       .joins('INNER JOIN events ON activities.trackable_type = "Event"')
       .where('events.event_datetime >= ?', Date.today)
+      .where('events.event_datetime <= ?', Date.today + 7.days)
       .paginate(page: params[:page], per_page: 50)
 
 

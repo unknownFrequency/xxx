@@ -2,23 +2,44 @@
   <div class="col-lg-3">
     <%= render 'shared/user_info' %>
   </div>
+  <div class="index-events col-lg-9">
+    <h4>UGENS BEGIVENHEDER</h4>
 
-    <div id="newsfeed" class="col-lg-6">
-      <%= render 'posts/form' %>
-      <br>
+    <ul class="list-group">
+      <% @events.each do |event| %>
+        <h4><%= link_to event.name, event_path(event) %></h4>
+        <li class="list-group-item">
+          <%= event.event_datetime.strftime('d. %d/%m') %>
+          <span class="float-right">
+                       Oprettet af: <strong><u><%= link_to User.find(event.user_id).name %></u></strong>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-lg-3">
+  </div>
+  <div id="newsfeed" class="col-lg-6">
+    <%= render 'posts/form' %>
+    <br>
+    <div
       <div id="activities">
         <% if @activities.empty? %>
-          <div class="well">
-            <%= render('shared/no_resource', resources: 'Activities') %>
-          </div>
-        <% else %>
-          <%= render_activities(@activities, layout: '/shared/activity') %>
-        <% end %>
+        <div class="well">
+          <%= render('shared/no_resource', resources: 'Activities') %>
+        </div>
+      <% else %>
+        <%= render_activities(@activities, layout: '/shared/activity') %>
+      <% end %>
       </div>
       <%= render 'shared/paginate', resources: @activities %>
     </div>
 
-  <div class="col-lg-3">
-    <%= render 'shared/links' %>
+    <div class="col-lg-3">
+      <%= render 'shared/links' %>
+    </div>
   </div>
-</div>
