@@ -17,7 +17,7 @@ class HomeController < ApplicationController
 
     @events = Event.all.distinct
       .where('events.event_datetime >= ?', Date.today)
-      .where('events.event_datetime <= ?', Date.today + 7.days)
+      .where('events.event_datetime <= ?', Date.today + 31.days)
   end
 
   def front
@@ -36,6 +36,7 @@ class HomeController < ApplicationController
       .paginate(page: params[:page], per_page: 50)
 
 
+    @private_posts = Post.where(public: false)
       # .reorder('events.event_datetime DESC')
     # @public_events = Event.all.where("event_datetime >= ?", Date.today)
 

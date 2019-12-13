@@ -1,0 +1,17 @@
+<h1>Thylejrens beboere</h1>
+
+<ul>
+  <h2 class="initial-letter">
+    <%= initial_char = "A" %>
+  </h2>
+
+  <%= @users.each do |user| %>
+    <% if defined?(initial_char) && user.name[0].upcase != initial_char %>
+      <% initial_char = user.name[0] %>
+      <h2 class="initial-letter">
+        <%= user.name[0] %>
+      </h2>
+    <% end %>
+    <li><%= link_to user.name, user %></li>
+  <% end %>
+</ul>

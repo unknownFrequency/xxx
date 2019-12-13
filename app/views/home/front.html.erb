@@ -17,6 +17,7 @@
         </div>
       <% else %>
         <%= render_activities(@public_activities, layout: '/shared/activity') %>
+        <%= render_activities(@private_activities, layout: '/shared/activity') %>
       <% end %>
     </div>
     <%= render 'shared/paginate', resources: @public_activities %>

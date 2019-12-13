@@ -4,9 +4,13 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
+  before_action :set_user, only: [:edit, :update, :show] 
   before_action :check_ownership, only: [:edit, :update]
   respond_to :html, :js
+
+  def index
+    @users = User.all.order(name: :asc)
+  end
 
   def show
     @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc).paginate(page: params[:page], per_page: 10)

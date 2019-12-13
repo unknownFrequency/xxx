@@ -17,5 +17,4 @@ class Event < ActiveRecord::Base
 
   # default_scope { order("datetime(event_datetime) DESC").where('event_datetime >= ?', Date.today) }
   default_scope { order("event_datetime DESC").where('event_datetime >= ?', Date.today) }
-  # default_scope { order(event_datetime: :asc) }
 end

@@ -1,0 +1,2 @@
+make events public/private
+show if post/event is public / private
