@@ -9,7 +9,7 @@
       </div>
       <div class="form-group">
         <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: 'password' %>
+        <%= f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: 'password', data: {encrypt: true} %>
       </div>
       <% if devise_mapping.rememberable? -%>
         <div class="form-group">
@@ -25,3 +25,4 @@
     <%= render 'devise/shared/links' %>
   </div>
 </div>
+<%= hidden_field_tag :public_key, PUBLIC_KEY %>

@@ -10,7 +10,7 @@
   <% if @user.dob.present? %>
     <h5>
       <%= fa_icon @user.sex %>
-      <%= "#{pluralize(age(@user.dob), 'år')} gammel" %>
+      <%= "#{pluralize(age(@user.dob), 'år')}" %>
     </h5>
   <% end %>
   <% if @user.location.present? %>
