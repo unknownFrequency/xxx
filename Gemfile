@@ -33,6 +33,7 @@ end
 group :development, :test do
   gem 'puma'
   gem 'sqlite3', '~> 1.3.6'
+  gem 'byebug'
 end
 
 group :production do

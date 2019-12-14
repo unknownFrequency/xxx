@@ -38,6 +38,7 @@ $(document).ready(function () {
         unencrypted.val(encrypted);
       }
     })
-    event.preventDefault();
+console.log(encrypted);
+// event.preventDefault();
   });
 });

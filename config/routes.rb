@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :messages
   resources :comments, only: [:create, :destroy]
-  devise_for :users
+  devise_for :users, controllers: {sessions: "users/sessions"}
   resources :users do
     member do
       get :friends
