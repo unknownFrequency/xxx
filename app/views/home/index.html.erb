@@ -3,7 +3,7 @@
     <%= render 'shared/user_info' %>
   </div>
   <div class="index-events col-lg-9">
-    <h4>UGENS BEGIVENHEDER - INDEX</h4>
+    <h4><%= image_tag 'events.png' %>UGENS BEGIVENHEDER </h4>
 
     <ul class="list-group">
       <% @events.each do |event| %>
@@ -17,7 +17,7 @@
           <div class="collapse" id="event-colapsible">
             <div class="card card-body">
               <br />
-              <%= event.description %>
+              <%= link_to event.description, event_path(event) %>
             </div>
           </div>
         </li>
